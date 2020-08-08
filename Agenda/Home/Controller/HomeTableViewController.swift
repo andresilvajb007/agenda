@@ -191,4 +191,7 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
         }
     }
 
+    @IBAction func buttonCalculaMedia(_ sender: UIBarButtonItem) {
+        CalculaMediaAPI().calculaMediaGeralDosAlunos()
+    }
 }
