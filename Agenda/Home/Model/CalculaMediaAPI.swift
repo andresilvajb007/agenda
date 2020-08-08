@@ -10,24 +10,40 @@ import UIKit
 
 class CalculaMediaAPI: NSObject {
     
-    func calculaMediaGeralDosAlunos(){
-        guard let  url = URL(string: "https://caelum.com.br/mobile") else{
+    func calculaMediaGeralDosAlunos(alunos: Array<Aluno>,
+                                    sucesso: @escaping(_ dicionarioMedias: Dictionary<String,Any>) -> Void,
+                                    falha: @escaping(_ error: Error) -> Void){
+        
+        guard let  url = URL(string: "https://www.caelum.com.br/mobile") else{
             return
         }
                 
         var listaDeAlunos: Array<Dictionary<String,Any>> = []
         var json: Dictionary<String,Any> = [:]
-        let dicionarioDeAlunos =
-        [
-            "id" : "1" ,
-            "nome": "Andre",
-            "endereco" : "rua aaa",
-            "telefone" : "9999-9999",
-            "site": "www.alura.com.br",
-            "nota": "8"
-        ]
         
-        listaDeAlunos.append(dicionarioDeAlunos as [String:Any] )
+        for aluno in alunos{
+            
+            guard let nome = aluno.nome else { break  }
+            guard let endereco = aluno.endereco else { break  }
+            guard let telefone = aluno.telefone else { break  }
+            guard let site = aluno.site else { break  }
+            
+            
+            let dicionarioDeAlunos =
+            [
+                "id" : "\(1)" ,
+                "nome": nome,
+                "endereco" : endereco,
+                "telefone" : telefone,
+                "site": site,
+                "nota": String(aluno.nota)
+            ] as [String : Any]
+                   
+            listaDeAlunos.append(dicionarioDeAlunos )
+            
+        }
+        
+       
         json = [
             "list": [
                 ["aluno": listaDeAlunos]
@@ -35,10 +51,13 @@ class CalculaMediaAPI: NSObject {
         ]
         
         var request = URLRequest(url: url)
+        
         do
         {
-            let dicionario = try JSONSerialization.data(withJSONObject: json, options: [])
-            request.httpBody = dicionario
+            let data = try JSONSerialization.data(withJSONObject: json, options: [])
+            print(String(data: data, encoding: .utf8))
+
+            request.httpBody = data
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
@@ -46,11 +65,13 @@ class CalculaMediaAPI: NSObject {
                 if error == nil{
                     do
                     {
-                        let dicionario = try JSONSerialization.jsonObject(with: data!, options: [])
-                        print(dicionario)
+                        let jsonRetorno = try JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String,Any>
+                        print(jsonRetorno)
+                        
+                        sucesso(jsonRetorno)
                     }
-                    catch{
-                        print(error.localizedDescription)
+                    catch{                        
+                        falha(error)
                     }
                     
                 }

@@ -192,6 +192,13 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
     }
 
     @IBAction func buttonCalculaMedia(_ sender: UIBarButtonItem) {
-        CalculaMediaAPI().calculaMediaGeralDosAlunos()
+        guard let listaDeAlunos = gerenciadorDeResultados?.fetchedObjects else { return }
+        CalculaMediaAPI().calculaMediaGeralDosAlunos(alunos: listaDeAlunos,
+        sucesso: { (dicionario) in
+            print(dicionario)
+        },
+        falha:{ (Error) in
+            print(Error)
+        })
     }
 }
