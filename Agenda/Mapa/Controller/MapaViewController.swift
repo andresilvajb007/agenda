@@ -38,7 +38,7 @@ class MapaViewController: UIViewController {
            Localizacao().converteEnderecoEmCoordenadas(endereco: "Praca oito") { (localizacaoEncontrada) in
 
             let pino = Localizacao().configuraPino(titulo: "Praca oito", localizacao: localizacaoEncontrada, cor: .black, icone: nil)
-            let regiao =  MKCoordinateRegion(center: pino.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
+            let regiao =  MKCoordinateRegion(center: pino.coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
             self.mapa.setRegion(regiao, animated: true)
             self.mapa.addAnnotation(pino)
                 
@@ -51,7 +51,7 @@ class MapaViewController: UIViewController {
             Localizacao().converteEnderecoEmCoordenadas(endereco: aluno.endereco!) { (localizacaoEncontrada) in
                 
               let pino = Localizacao().configuraPino(titulo: aluno.nome!, localizacao: localizacaoEncontrada, cor: nil, icone: nil)
-              let regiao =  MKCoordinateRegion(center: pino.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
+              let regiao =  MKCoordinateRegion(center: pino.coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
               self.mapa.setRegion(regiao, animated: true)
               self.mapa.addAnnotation(pino)
           }
