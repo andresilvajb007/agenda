@@ -21,6 +21,15 @@ class Localizacao: NSObject, MKMapViewDelegate {
         }
     }
     
+    func configuraBotaoLocalizacaoAtual(mapa: MKMapView) -> MKUserTrackingButton{
+        let botao = MKUserTrackingButton(mapView: mapa)
+        botao.frame.origin.x = 10;
+        botao.frame.origin.y = 10;
+        
+        return botao
+        
+    }
+    
     //MARK: - Configura Pinos
     func configuraPino(titulo: String, localizacao: CLPlacemark, cor: UIColor?, icone: UIImage?) -> Pino{
         let pino = Pino(coordenada: localizacao.location!.coordinate)

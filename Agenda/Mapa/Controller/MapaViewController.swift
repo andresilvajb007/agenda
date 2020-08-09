@@ -9,11 +9,12 @@
 import UIKit
 import MapKit
 
-class MapaViewController: UIViewController {
+class MapaViewController: UIViewController,CLLocationManagerDelegate {
     
     //MARK: - IBOutlet
     @IBOutlet weak var mapa: MKMapView!
     lazy var localizacao =  Localizacao()
+    lazy var gerenciadorDeLocalizacao = CLLocationManager()
     
     //MARK: - Variavel
     var aluno: Aluno?
@@ -23,8 +24,10 @@ class MapaViewController: UIViewController {
         self.navigationItem.title = getTitulo()
         self.localizacaoInicial()
         self.localizarAluno()
+        self.verificaAutorizacaoUsuario()
         
         mapa.delegate = localizacao
+        gerenciadorDeLocalizacao.delegate = self
         
         
     }
@@ -58,6 +61,44 @@ class MapaViewController: UIViewController {
         }
     }
     
+    func verificaAutorizacaoUsuario(){
+        
+        if CLLocationManager.locationServicesEnabled(){
+            switch CLLocationManager.authorizationStatus() {
+            case .authorizedWhenInUse:
+                let botao = Localizacao().configuraBotaoLocalizacaoAtual(mapa: mapa)
+                mapa.addSubview(botao)
+                gerenciadorDeLocalizacao.startUpdatingLocation()
+                
+                break
+            case .notDetermined:
+                gerenciadorDeLocalizacao.requestWhenInUseAuthorization()
+                break
+            case .denied:
+                break
+                
+            default:
+                break
+            }
+        }
+    }
+    
+    //MARK: - CLLocationManagerDelegate
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedWhenInUse:
+            let botao = Localizacao().configuraBotaoLocalizacaoAtual(mapa: mapa)
+            mapa.addSubview(botao)
+            gerenciadorDeLocalizacao.startUpdatingLocation()
+        default:
+            break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations)
+    }
 
 
 }
