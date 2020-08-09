@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
-class Localizacao: NSObject {
+class Localizacao: NSObject, MKMapViewDelegate {
 
     func converteEnderecoEmCoordenadas(endereco: String, local: @escaping(_ local: CLPlacemark) -> Void){
         let conversor = CLGeocoder()
@@ -18,5 +19,33 @@ class Localizacao: NSObject {
                 local(localizacao)
             }
         }
+    }
+    
+    //MARK: - Configura Pinos
+    func configuraPino(titulo: String, localizacao: CLPlacemark, cor: UIColor?, icone: UIImage?) -> Pino{
+        let pino = Pino(coordenada: localizacao.location!.coordinate)
+        pino.title = titulo
+        pino.cor = cor
+        pino.icone = icone
+        
+        return pino
+    }
+        
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is Pino{
+            
+            let  annotationView =  annotation as! Pino
+            var pinoView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationView.title!) as! MKMarkerAnnotationView
+            pinoView = MKMarkerAnnotationView (annotation: annotationView, reuseIdentifier: annotationView.title!)
+            
+            pinoView.annotation = annotationView
+            pinoView.glyphImage = annotationView.icone
+            pinoView.markerTintColor = annotationView.cor
+            
+            return pinoView
+            
+            
+        }        
+        return nil
     }
 }

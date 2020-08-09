@@ -13,6 +13,7 @@ class MapaViewController: UIViewController {
     
     //MARK: - IBOutlet
     @IBOutlet weak var mapa: MKMapView!
+    lazy var localizacao =  Localizacao()
     
     //MARK: - Variavel
     var aluno: Aluno?
@@ -23,6 +24,8 @@ class MapaViewController: UIViewController {
         self.localizacaoInicial()
         self.localizarAluno()
         
+        mapa.delegate = localizacao
+        
         
     }
     
@@ -32,11 +35,13 @@ class MapaViewController: UIViewController {
     }
     
     func localizacaoInicial() {
-        Localizacao().converteEnderecoEmCoordenadas(endereco: "Praca oito") { (localizacaoEncontrada) in
-            let pino = self.configuraPino(titulo: "Praca", localizacao: localizacaoEncontrada)
+           Localizacao().converteEnderecoEmCoordenadas(endereco: "Praca oito") { (localizacaoEncontrada) in
+
+            let pino = Localizacao().configuraPino(titulo: "Praca oito", localizacao: localizacaoEncontrada, cor: .black, icone: nil)
             let regiao =  MKCoordinateRegion(center: pino.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
             self.mapa.setRegion(regiao, animated: true)
             self.mapa.addAnnotation(pino)
+                
         }
     }
     
@@ -44,7 +49,8 @@ class MapaViewController: UIViewController {
         if let aluno = aluno{
                     
             Localizacao().converteEnderecoEmCoordenadas(endereco: aluno.endereco!) { (localizacaoEncontrada) in
-                let pino = self.configuraPino(titulo: aluno.nome!, localizacao: localizacaoEncontrada)
+                
+              let pino = Localizacao().configuraPino(titulo: aluno.nome!, localizacao: localizacaoEncontrada, cor: nil, icone: nil)
               let regiao =  MKCoordinateRegion(center: pino.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
               self.mapa.setRegion(regiao, animated: true)
               self.mapa.addAnnotation(pino)
@@ -52,13 +58,6 @@ class MapaViewController: UIViewController {
         }
     }
     
-    //MARK: - Configura Pinos
-    func configuraPino(titulo: String, localizacao: CLPlacemark) -> MKPointAnnotation{
-        let pino = MKPointAnnotation()
-        pino.title = titulo
-        pino.coordinate = localizacao.location!.coordinate
-        
-        return pino
-    }
+
 
 }
