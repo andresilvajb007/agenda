@@ -35,17 +35,18 @@ class Localizacao: NSObject, MKMapViewDelegate {
         if annotation is Pino{
             
             let  annotationView =  annotation as! Pino
-            var pinoView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationView.title!) as! MKMarkerAnnotationView
+            
+            var pinoView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationView.title!) as? MKMarkerAnnotationView
             pinoView = MKMarkerAnnotationView (annotation: annotationView, reuseIdentifier: annotationView.title!)
             
-            pinoView.annotation = annotationView
-            pinoView.glyphImage = annotationView.icone
-            pinoView.markerTintColor = annotationView.cor
+            pinoView?.annotation = annotationView
+            pinoView?.glyphImage = annotationView.icone
+            pinoView?.markerTintColor = annotationView.cor
             
             return pinoView
             
             
-        }        
+        }
         return nil
     }
 }
