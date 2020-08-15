@@ -57,6 +57,7 @@ class MapaViewController: UIViewController,CLLocationManagerDelegate {
               let regiao =  MKCoordinateRegion(center: pino.coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
               self.mapa.setRegion(regiao, animated: true)
               self.mapa.addAnnotation(pino)
+              self.mapa.showAnnotations(self.mapa.annotations, animated: true)
           }
         }
     }

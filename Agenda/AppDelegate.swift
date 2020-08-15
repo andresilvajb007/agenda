@@ -14,6 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    enum TipoDeShortCut: String{
+        case cadastrarAluno =  "CadastrarAluno"
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -44,6 +47,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
 
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        if let tipo = TipoDeShortCut(rawValue: shortcutItem.type){
+            
+            switch tipo {
+            case .cadastrarAluno:
+                let cadastrarAluno = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "cadadastrarAluno") as! AlunoViewController
+                
+                let navigation  = UIApplication.shared.keyWindow?.rootViewController as! UINavigationController
+                
+                navigation.pushViewController(cadastrarAluno, animated: true)
+                
+                break
+            }
+        }
+    }
+    
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {

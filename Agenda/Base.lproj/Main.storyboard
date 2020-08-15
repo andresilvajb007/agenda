@@ -77,7 +77,7 @@
         <!--Aluno View Controller-->
         <scene sceneID="eVt-59-5bJ">
             <objects>
-                <viewController id="ZY7-NM-Hup" customClass="AlunoViewController" customModule="Agenda" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cadadastrarAluno" id="ZY7-NM-Hup" customClass="AlunoViewController" customModule="Agenda" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="daU-O4-U0H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

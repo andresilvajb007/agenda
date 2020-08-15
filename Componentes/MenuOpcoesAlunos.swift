@@ -14,6 +14,7 @@ enum EnumMenuOpcoesAlunos
     case ligacao
     case waze
     case mapa
+    case paginaWeb
 }
 
 class MenuOpcoesAlunos: NSObject {
@@ -42,6 +43,11 @@ class MenuOpcoesAlunos: NSObject {
             completion(.mapa)
         }
         
+        let pagina = UIAlertAction(title: "acessar pagina", style: .default) { (acao) in
+                  //implementar
+                  completion(.paginaWeb)
+              }
+        
         let cancelar = UIAlertAction(title: "cancelar", style: .cancel, handler: nil)
         
         
@@ -49,6 +55,7 @@ class MenuOpcoesAlunos: NSObject {
         alert.addAction(ligacao)
         alert.addAction(waze)
         alert.addAction(mapa)
+        alert.addAction(pagina)
         alert.addAction(cancelar)
         
         return alert

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SafariServices
 
 class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFetchedResultsControllerDelegate {
     
@@ -128,6 +129,23 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
                     
                     break
                     
+                case .paginaWeb:
+                    
+                    if let urlDoAluno = alunoSelecionado.site{
+                        var urlFormatada = urlDoAluno
+                        
+                        if !urlFormatada.hasPrefix("http://"){
+                            urlFormatada = String.init(format: "http://%@", urlFormatada)
+                        }
+                        
+                        guard let url = URL(string: urlFormatada) else{ return }
+//                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        
+                        let safariViewController = SFSafariViewController(url: url)
+                        self.present(safariViewController, animated: true)
+                    }
+                    
+                    break
                 }
             }
             self.present(menu, animated: true, completion: nil)
@@ -149,6 +167,8 @@ class HomeTableViewController: UITableViewController, UISearchBarDelegate, NSFet
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "celula-aluno", for: indexPath) as! HomeTableViewCell
+        cell.tag = indexPath.row
+        
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(abrirActionSheet))
         
         
