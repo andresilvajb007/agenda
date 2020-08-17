@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CoreData
+
 
 class AlunoViewController: UIViewController,ImagePickerFotoSelecionada {
 
@@ -30,10 +30,7 @@ class AlunoViewController: UIViewController,ImagePickerFotoSelecionada {
     let imagePicker = ImagePicker()
     var aluno : Aluno?
     
-    var contexto: NSManagedObjectContext{
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
+
     
     
     // MARK: - View Lifecycle
@@ -101,7 +98,7 @@ class AlunoViewController: UIViewController,ImagePickerFotoSelecionada {
         guard let site = textFieldSite.text else { return [:] }
         guard let nota = textFieldNota.text else { return [:] }
         
-        var dicionario : Dictionary<String,String> = [
+        let dicionario : Dictionary<String,String> = [
             "id": String(describing: UUID()),
             "nome": nome,
             "endereco": endereco,
@@ -139,29 +136,9 @@ class AlunoViewController: UIViewController,ImagePickerFotoSelecionada {
     
     @IBAction func buttonSalvar(_ sender: UIButton) {
         
-        if aluno == nil{
-           aluno = Aluno(context: contexto)
-        }
-        
-        aluno?.nome = textFieldNome.text
-        aluno?.endereco = textFieldEndereco.text
-        aluno?.telefone = textFieldTelefone.text
-        aluno?.site = textFieldSite.text
-        aluno?.nota = (textFieldNota.text! as NSString).doubleValue
-        aluno?.foto = imageAluno.image
-        
-        do{
-            try contexto.save()
-            navigationController?.popViewController(animated: true)
-        }
-        catch
-        {
-            print(error.localizedDescription)
-        }
-        
         let json = montaDicionariodeAlunos()
-        
-        AlunoAPI().SalvaAlunosNoServidor(parametros:[json])
+        Repositorio().salvaAluno(aluno: json)
+        navigationController?.popViewController(animated: true)
          
     }
     

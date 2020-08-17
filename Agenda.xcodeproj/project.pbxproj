@@ -23,6 +23,8 @@
 		0E7AC32124D75AC700694DC8 /* Localizacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7AC32024D75AC700694DC8 /* Localizacao.swift */; };
 		0E7AC32624D7739200694DC8 /* MapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7AC32524D7739200694DC8 /* MapaViewController.swift */; };
 		0E95788C24E9894B009D2740 /* AlunoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E95788B24E9894B009D2740 /* AlunoAPI.swift */; };
+		0E95789424EB47A2009D2740 /* Repositorio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E95789324EB47A2009D2740 /* Repositorio.swift */; };
+		0E95789624EB4882009D2740 /* AlunoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E95789524EB4882009D2740 /* AlunoDAO.swift */; };
 		0EB09E9B24CC9F2B002E958D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB09E9A24CC9F2B002E958D /* ImagePicker.swift */; };
 		BCC2D3EB8DB6173E6439F204 /* Pods_Agenda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD39B1BBD954D85E2C04699D /* Pods_Agenda.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,8 @@
 		0E7AC32024D75AC700694DC8 /* Localizacao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizacao.swift; sourceTree = "<group>"; };
 		0E7AC32524D7739200694DC8 /* MapaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
 		0E95788B24E9894B009D2740 /* AlunoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlunoAPI.swift; sourceTree = "<group>"; };
+		0E95789324EB47A2009D2740 /* Repositorio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositorio.swift; sourceTree = "<group>"; };
+		0E95789524EB4882009D2740 /* AlunoDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlunoDAO.swift; sourceTree = "<group>"; };
 		0EB09E9A24CC9F2B002E958D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2DADCF5B931ECBCCAE1CDBFF /* Pods-Agenda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agenda.release.xcconfig"; path = "Target Support Files/Pods-Agenda/Pods-Agenda.release.xcconfig"; sourceTree = "<group>"; };
 		60A902A78A50268E1BC53F74 /* Pods-Agenda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Agenda.debug.xcconfig"; path = "Target Support Files/Pods-Agenda/Pods-Agenda.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,9 +132,12 @@
 		03AA17691FC84A2D003CB2B8 /* Alunos */ = {
 			isa = PBXGroup;
 			children = (
+				0E95789224EB4784009D2740 /* New Group */,
 				0E95788A24E98936009D2740 /* Model */,
 				03AA176B1FC84A2D003CB2B8 /* View */,
 				03AA176A1FC84A2D003CB2B8 /* Controller */,
+				0E95789324EB47A2009D2740 /* Repositorio.swift */,
+				0E95789524EB4882009D2740 /* AlunoDAO.swift */,
 			);
 			path = Alunos;
 			sourceTree = "<group>";
@@ -197,6 +204,13 @@
 				0E95788B24E9894B009D2740 /* AlunoAPI.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0E95789224EB4784009D2740 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		0EB09E9924CC9F0B002E958D /* Componentes */ = {
@@ -357,10 +371,12 @@
 				0E0F1EB024DEE4D800C8056C /* CalculaMediaAPI.swift in Sources */,
 				03AA17681FC843B1003CB2B8 /* HomeTableViewCell.swift in Sources */,
 				0E0F1EB224DF611400C8056C /* AutenticacaoLocal.swift in Sources */,
+				0E95789424EB47A2009D2740 /* Repositorio.swift in Sources */,
 				0E7AC31D24D7105100694DC8 /* MenuOpcoesAlunos.swift in Sources */,
 				0E1A2E8824E043E2002672EB /* Pino.swift in Sources */,
 				0E7AC31F24D7165300694DC8 /* Mensagem.swift in Sources */,
 				0E7AC32624D7739200694DC8 /* MapaViewController.swift in Sources */,
+				0E95789624EB4882009D2740 /* AlunoDAO.swift in Sources */,
 				03AA174E1FC84154003CB2B8 /* AppDelegate.swift in Sources */,
 				0E95788C24E9894B009D2740 /* AlunoAPI.swift in Sources */,
 				0E7AC32124D75AC700694DC8 /* Localizacao.swift in Sources */,
