@@ -132,12 +132,9 @@
 		03AA17691FC84A2D003CB2B8 /* Alunos */ = {
 			isa = PBXGroup;
 			children = (
-				0E95789224EB4784009D2740 /* New Group */,
 				0E95788A24E98936009D2740 /* Model */,
 				03AA176B1FC84A2D003CB2B8 /* View */,
 				03AA176A1FC84A2D003CB2B8 /* Controller */,
-				0E95789324EB47A2009D2740 /* Repositorio.swift */,
-				0E95789524EB4882009D2740 /* AlunoDAO.swift */,
 			);
 			path = Alunos;
 			sourceTree = "<group>";
@@ -201,16 +198,11 @@
 		0E95788A24E98936009D2740 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0E95789324EB47A2009D2740 /* Repositorio.swift */,
+				0E95789524EB4882009D2740 /* AlunoDAO.swift */,
 				0E95788B24E9894B009D2740 /* AlunoAPI.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		0E95789224EB4784009D2740 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		0EB09E9924CC9F0B002E958D /* Componentes */ = {
